@@ -3,6 +3,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const { merge } = require('webpack-merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { ESBuildMinifyPlugin } = require('esbuild-loader');
 
 const config = {
   context: path.resolve(__dirname),
@@ -11,7 +12,7 @@ const config = {
     filename: 'default.js',
   },
   resolve: {
-    extensions: ['.js'],
+    extensions: ['.js', '.jsx'],
   },
   plugins: [
     new MiniCssExtractPlugin({
@@ -25,23 +26,34 @@ const config = {
       ],
     }),
     new HtmlWebpackPlugin({
+      title: 'Ctrl.IChat',
+      template: path.resolve(__dirname, './src/index.html'),
       filename: 'default.html',
     }),
   ],
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.jsx?$/,
         loader: 'esbuild-loader',
         options: {
           target: 'es2015',
+          loader: 'jsx',
         },
         exclude: /node_modules/,
       },
       {
-        test: /\.s[ac]ss$/i,
+        test: /\.s?[ac]ss$/i,
         use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
       },
+    ],
+  },
+  optimization: {
+    minimizer: [
+      new ESBuildMinifyPlugin({
+        target: 'es2015', // Syntax to compile to (see options below for possible values)
+        css: true,
+      }),
     ],
   },
 };
