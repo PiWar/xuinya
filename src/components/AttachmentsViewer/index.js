@@ -1,3 +1,3 @@
-import { AttachmentsViewer } from './AttachmentsViewer';
+import AttachmentsViewer from './AttachmentsViewer';
 
 export default AttachmentsViewer;

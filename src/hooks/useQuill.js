@@ -49,6 +49,7 @@ export const useQuill = (quillId, toolbarId, placeholder) => {
   }, []);
 
   const openMentionMenu = useCallback(() => {
+    console.log(quill);
     const selection = quill.getSelection(true);
     quill.insertText(selection, '@');
     quill.blur();
@@ -59,5 +60,9 @@ export const useQuill = (quillId, toolbarId, placeholder) => {
     quill.focus();
   }, [quill]);
 
-  return { quill, openMentionMenu, focusEditor };
+  const clearEditor = () => {
+    quill.root.innerHTML = '';
+  };
+
+  return { quill, openMentionMenu, focusEditor, clearEditor };
 };

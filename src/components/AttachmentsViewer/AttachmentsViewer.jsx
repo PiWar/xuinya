@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { memo, useEffect, useState } from 'react';
 import { isFile, toBase64 } from '../../helpers';
 import { useAttachmentsStore } from '../../store/useAttachmentsStore';
 import Attachment from './Attachment';
@@ -118,9 +118,8 @@ const getJsxFile = files => {
   });
 };
 
-export const AttachmentsViewer = () => {
+const AttachmentsViewer = () => {
   const files = useAttachmentsStore(state => state.files);
-  console.log(files);
   const [jsxMedia, setJsxMedia] = useState(null);
   const [jsxFiles, setJsxFiles] = useState(null);
 
@@ -132,7 +131,6 @@ export const AttachmentsViewer = () => {
   };
 
   useEffect(() => {
-    console.log(files);
     const sortedFiles = [[], [], []];
     files.forEach(file => {
       if (isFile.image(file)) {
@@ -154,3 +152,5 @@ export const AttachmentsViewer = () => {
     </div>
   );
 };
+
+export default memo(AttachmentsViewer)

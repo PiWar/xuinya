@@ -4,7 +4,6 @@ import { useAttachmentsStore } from '../../store/useAttachmentsStore';
 // eslint-disable-next-line react/prop-types
 const Attachment = ({ id, children }) => {
   const removeFile = useAttachmentsStore(state => state.removeFile);
-
   const removeAttachment = () => removeFile(id);
 
   return (

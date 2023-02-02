@@ -1,10 +1,14 @@
-import React from 'react'
-import { EmailsViewer } from './components/EmailsViewer/EmailsViewer'
-import TextEditor from './components/TextEditor'
+import React from 'react';
+import EmailsViewer from './components/EmailsViewer/EmailsViewer';
+import EmailEditor from './components/EmailEditor';
+import Turbo from './components/Turbo';
 
 export const App = () => {
-  return (<>
-    <TextEditor/>
-    <EmailsViewer/>
-  </>)
-}
+  return (
+    <>
+      <EmailEditor />
+      <EmailsViewer />
+      <Turbo />
+    </>
+  );
+};

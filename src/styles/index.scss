@@ -20,24 +20,23 @@
     margin-bottom: 4px;
   }
 
-  &__editor {
+  &__input {
     border: 1px solid #dbdee7;
     background: white;
 
-    &:focus-within #toolbar {
+    &:focus-within .ql-toolbar {
       transform: scaleY(1);
     }
 
-    &:hover #toolbar {
+    &:hover .ql-toolbar {
       transform: scaleY(1);
     }
   }
 
-  #editor {
-    min-height: 100px;
-    height: 100%;
+  .ql-container {
     border: none;
     .ql-editor {
+      min-height: 100px;
       padding: 6px;
       font-size: 14px;
       &::before {
@@ -80,7 +79,7 @@
     }
   }
 
-  #toolbar {
+  .ql-toolbar {
     transform-origin: bottom;
     transition: transform 0.2s ease;
     transform: scaleY(0);
@@ -184,4 +183,89 @@
 
 .emails-viewer {
   border: 2px solid $gray;
+  height: 100%;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 16px;
+}
+
+.email {
+  position: relative;
+  display: flex;
+  row-gap: 8px;
+  flex-direction: column;
+  width: fit-content;
+  &.his {
+    align-self: end;
+  }
+  &__title {
+    display: flex;
+    align-items: center;
+    column-gap: 8px;
+    &_avatar {
+      aspect-ratio: 1/1;
+      width: 24px;
+      border: 2px solid $grayDark;
+      border-radius: 50%;
+      position: relative;
+      img {
+        position: absolute; // flex don't worked
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        border-radius: 50%;
+      }
+    }
+    &_text {
+      font-size: 12px;
+      line-height: 16px;
+    }
+  }
+
+  &__body {
+    position: relative;
+    border-radius: 4px;
+    background: $gray;
+    max-width: 350px;
+    width: fit-content;
+    padding: 12px;
+    padding-right: 16px;
+
+    .mentioned {
+      color: $blue;
+    }
+  }
+
+  &.his &__context-menu {
+    right: calc(100% + 5px);
+    left: auto;
+  }
+
+  &__context-menu {
+    position: absolute;
+    z-index: 1;
+    width: fit-content;
+    left: calc(100% + 5px);
+    overflow: hidden;
+    background: $gray;
+    border-radius: 4px;
+    .menu-item {
+      padding: 4px 8px;
+      cursor: pointer;
+      &:hover {
+        background: $grayDark;
+      }
+    }
+    display: none;
+    &.open {
+      display: block;
+    }
+    hr {
+      height: 1px;
+      background-color: $grayDark;
+      border: none;
+    }
+  }
 }

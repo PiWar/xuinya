@@ -1,3 +1,3 @@
-import { EmailsViewer } from './EmailsViewer';
+import EmailsViewer from './EmailsViewer';
 
 export default EmailsViewer;

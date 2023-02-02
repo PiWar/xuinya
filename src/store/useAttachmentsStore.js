@@ -19,5 +19,9 @@ export const useAttachmentsStore = create(
       set(state => {
         state.files = state.files.filter(file => file.id !== id);
       }),
+    clear: () =>
+      set(state => {
+        state.files = [];
+      }),
   }))
 );
